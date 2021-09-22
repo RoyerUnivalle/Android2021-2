@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Uceva20212</string>
+    <string name="btn_login">Ingresar</string>
+    <string name="pick_password">Pick your password</string>
+    <string name="btn_back">Pick your password</string>
+    <string name="btn_ok">Ok</string>
+</resources>

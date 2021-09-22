@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="atras"
+            android:text="@string/btn_back" />
+        <Button
+            android:id="@+id/btnInterface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="interface" />
+        <Button
+            android:id="@+id/btnDelegado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delegado" />
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:textColor="@color/red"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+        <EditText
+            android:id="@+id/et1"
+            android:layout_width="match_parent"
+            android:textColor="@color/red"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+        <Button
+            android:id="@+id/botonContar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contar" />
+        <Button
+            android:id="@+id/botonPintar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="pintar"
+            android:text="Pintar" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
