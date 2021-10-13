@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.uceva20212.services.MyService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +46,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
     EditText etContador;
     Pintar obj; // objeto de la clase pintar
     DataHttpClass HttpObj;
+    Intent servicio;
     int i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
         }else if (nInfo.getType() == ConnectivityManager.TYPE_MOBILE){
             Toast.makeText(this, "Desea continuar con datos", Toast.LENGTH_LONG).show();
         }
+        servicio = new Intent(this, MyService.class);
     }
     public void atras(View h){
         Intent ir = new Intent(this, MainActivity.class);
@@ -326,6 +329,16 @@ public void getDataVolley(){
             }
             return null;
         }
+    }
+
+    public void iniciarServicioFecha(View x){
+        //Intent servicio = new Intent(this, MyService.class);
+        startService(servicio);
+    }
+
+    public void detenerServicioFecha(){
+        //Intent servicio = new Intent(this, MyService.class);
+        //stopService(servicio);
     }
 
 }

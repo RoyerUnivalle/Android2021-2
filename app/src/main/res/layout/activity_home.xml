@@ -51,5 +51,11 @@
             android:layout_height="wrap_content"
             android:onClick="pintar"
             android:text="Pintar" />
+        <Button
+            android:id="@+id/btnService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="iniciarServicioFecha"
+            android:text="Mostrar fecha" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
