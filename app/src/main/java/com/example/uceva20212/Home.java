@@ -2,6 +2,10 @@ package com.example.uceva20212;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -48,6 +52,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
     DataHttpClass HttpObj;
     Intent servicio;
     int i;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +100,13 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(this, "Desea continuar con datos", Toast.LENGTH_LONG).show();
         }
         servicio = new Intent(this, MyService.class);
+        /////////////// Fragmentos
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        BlankFragment fragmento1 = new BlankFragment();
+        fragmentTransaction.add(R.id.reuseFragment, fragmento1);
+        fragmentTransaction.commit();
+        /////////////// Fragmentos
     }
     public void atras(View h){
         Intent ir = new Intent(this, MainActivity.class);
