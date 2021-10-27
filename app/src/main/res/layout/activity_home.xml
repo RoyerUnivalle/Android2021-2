@@ -57,10 +57,10 @@
             android:layout_height="wrap_content"
             android:onClick="iniciarServicioFecha"
             android:text="Mostrar fecha" />
-        <fragment android:name="com.example.uceva20212.BlankFragment"
+        <!-- <fragment android:name="com.example.uceva20212.BlankFragment"
             android:id="@+id/nativeFragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" /> -->
         <FrameLayout
             android:layout_width="wrap_content"
             android:id="@+id/reuseFragment"

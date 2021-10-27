@@ -15,6 +15,9 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -100,13 +103,13 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(this, "Desea continuar con datos", Toast.LENGTH_LONG).show();
         }
         servicio = new Intent(this, MyService.class);
-        /////////////// Fragmentos
-        fragmentManager = getSupportFragmentManager();
+        /////////////// Fragmentos a nivel programatico
+        /*fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        BlankFragment fragmento1 = new BlankFragment();
+        BlankFragment2 fragmento1 = new BlankFragment2();
         fragmentTransaction.add(R.id.reuseFragment, fragmento1);
-        fragmentTransaction.commit();
-        /////////////// Fragmentos
+        fragmentTransaction.commit();*/
+        /////////////// Fragmentos a nivel programatico
     }
     public void atras(View h){
         Intent ir = new Intent(this, MainActivity.class);
@@ -353,5 +356,43 @@ public void getDataVolley(){
         //Intent servicio = new Intent(this, MyService.class);
         //stopService(servicio);
     }
+    // nos ensambla el munu en la activity. ¿Con cuantas opcions?
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.vertical_menu, menu); // <<-- con los items que estan aqui
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.itemF1:
+                //Toast.makeText(this,"itemF1", Toast.LENGTH_LONG).show();
+                this.cambiarFragmento("itemF1");
+                break;
+            case R.id.itemF2:
+                this.cambiarFragmento("itemF2");
+                break;
+            default:
+                Toast.makeText(this,"itemF2", Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void cambiarFragmento(String fragmentName){
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentManager.popBackStack();
+        if(fragmentName.matches("itemF1")){
+            ItemFragment fragmento1 = new ItemFragment();
+            fragmentTransaction.add(R.id.reuseFragment, fragmento1);
+            fragmentTransaction.commit();
+        }else {
+            BlankFragment2 fragmento1 = new BlankFragment2();
+            fragmentTransaction.add(R.id.reuseFragment, fragmento1);
+            fragmentTransaction.commit();
+        }
+
+    }
 }
