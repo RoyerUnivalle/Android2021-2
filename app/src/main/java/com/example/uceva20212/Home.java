@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -43,6 +44,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import com.example.uceva20212.connection.Connection;
 
 public class Home extends AppCompatActivity implements View.OnClickListener{
 
@@ -57,6 +59,9 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
     int i;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    // Bases de datos
+    Connection objDb;
+    SQLiteDatabase dbAccess;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +115,16 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
         fragmentTransaction.add(R.id.reuseFragment, fragmento1);
         fragmentTransaction.commit();*/
         /////////////// Fragmentos a nivel programatico
+
+        // Bases de datos autocontenidas
+        // Crear BD
+        objDb = new Connection(this,"students", null,1);
+        // Poder manipular la BD
+        dbAccess = objDb.getWritableDatabase();
+        if(objDb != null){
+            Toast.makeText(this, "BD creada", Toast.LENGTH_SHORT).show();
+            getJsonVolley();
+        }
     }
     public void atras(View h){
         Intent ir = new Intent(this, MainActivity.class);
@@ -285,6 +300,10 @@ public void getDataVolley(){
                             for (int i = 0; i < cantidadEstudiantes; i++){
                                 JSONObject estudiante = estudiantes.getJSONObject(i);
                                 Log.d("","Nombre: "+ estudiante.getString("nombre") + " "+ estudiante.getString("apellido"));
+                                String name = estudiante.getString("nombre");
+                                String last_name = estudiante.getString("apellido");
+                                String insert = "insert into students (id,name,last_name) values ("+(i+1)+",'"+name+"','"+last_name+"');";
+                                dbAccess.execSQL(insert);
                                 JSONArray materias = estudiante.getJSONArray("materias");
                                 int cantidadMaterias = materias.length();
                                 for (int j=0; j<cantidadMaterias; j++){
