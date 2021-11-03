@@ -379,6 +379,9 @@ public void getDataVolley(){
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
+        // Si perfil === 1 then R.menu.vertical_menu
+        // sino si perfil === 2 R.menu.vertical_menu2
+        // sino perfil === 2 R.menu.vertical_menu3
         inflater.inflate(R.menu.vertical_menu, menu); // <<-- con los items que estan aqui
         return super.onCreateOptionsMenu(menu);
     }
@@ -392,6 +395,7 @@ public void getDataVolley(){
                 break;
             case R.id.itemF2:
                 this.cambiarFragmento("itemF2");
+                // StartActivity
                 break;
             default:
                 Toast.makeText(this,"itemF2", Toast.LENGTH_LONG).show();
@@ -402,7 +406,7 @@ public void getDataVolley(){
     public void cambiarFragmento(String fragmentName){
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentManager.popBackStack();
+        fragmentManager.popBackStack(); // <- limpiar la pila de fragmentos don't work
         if(fragmentName.matches("itemF1")){
             ItemFragment fragmento1 = new ItemFragment();
             fragmentTransaction.add(R.id.reuseFragment, fragmento1);
